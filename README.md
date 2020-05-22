@@ -8,5 +8,7 @@ A gym resgistry for a 2D reservoir simulation envirinment to solve optimal well 
 
 # Installation
 
+```
 cd gym-ressim
 pip install -e .
+```
