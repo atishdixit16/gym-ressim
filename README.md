@@ -1,5 +1,5 @@
 # ResSim Environment
-A gym resgistry for a 2D reservoir simulation envirinment to solve optimal well control problem using reinforcement learning algorithms.
+A gym resgistry for a 2D reservoir simulation environment to solve optimal well control problem using reinforcement learning algorithms.
 
 # References
 - https://github.com/chanshing/ressim
