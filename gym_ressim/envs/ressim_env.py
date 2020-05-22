@@ -48,7 +48,7 @@ class ResSimEnv(gym.Env):
         self.state_seq_n = state_seq_n # has to be smaller than n_steps
         self.max_steps = max_steps
 
-        self.step=0
+        self.step_no=0
 
         self.q = np.zeros(self.grid.shape)
         self.q[0,0]=-0.5 # producer 1 
@@ -102,11 +102,11 @@ class ResSimEnv(gym.Env):
             
             reward +=  -self.q[0,0] * (1 - self.s_load[0,0]) + -self.q[-1,0] * ( 1 - self.s_load[-1,0] ) 
 
-        self.step += 1
+        self.step_no += 1
 
-        if self.step >= self.max_steps:
+        if self.step_no >= self.max_steps:
             done=True
-            self.step=0
+            self.step_no=0
         else:
             done=False
 
