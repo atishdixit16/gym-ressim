@@ -26,7 +26,6 @@ class ResSimEnv(gym.Env):
                 dt = 1e-3,
                 n_steps = 50,
                 k_type='uniform',
-                max_steps=5,
                 state_seq_n=3):
 
         self.nx = nx
@@ -46,9 +45,6 @@ class ResSimEnv(gym.Env):
         self.n_steps = n_steps
         self.k_type = k_type
         self.state_seq_n = state_seq_n # has to be smaller than n_steps
-        self.max_steps = max_steps
-
-        self.step_no=0
 
         self.q = np.zeros(self.grid.shape)
         self.q[0,0]=-0.5 # producer 1 
@@ -100,15 +96,9 @@ class ResSimEnv(gym.Env):
             if i+1 in state_indices:
                 state.extend( [self.s_load[0,-1],self.s_load[-1,0],self.s_load[0,0]] )
             
-            reward +=  -self.q[0,0] * (1 - self.s_load[0,0]) + -self.q[-1,0] * ( 1 - self.s_load[-1,0] ) 
+            reward +=  -self.q[0,0] * (1 - self.s_load[0,0]) + -self.q[-1,0] * ( 1 - self.s_load[-1,0] )
 
-        self.step_no += 1
-
-        if self.step_no >= self.max_steps:
-            done=True
-            self.step_no=0
-        else:
-            done=False
+        done=False
 
         # states are represented by values of sturation and pressure at producers and injectors
         state = np.array( state )
